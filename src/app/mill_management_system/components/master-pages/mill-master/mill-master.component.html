@@ -1,0 +1,80 @@
+<p-toast></p-toast>
+<div class="card">
+    <h5>New Mill Creation</h5>
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="millName" pInputText [(ngModel)]="millMaster.millName" maxlength="100" upperCase>
+                <label for="millName">Mill Name<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="state" [autoDisplayFirst]="false" [options]="stateList"
+                    [(ngModel)]="millMaster.stateCode" 
+                    [filter]="true" filterBy="stateName"
+                    optionLabel="stateName" optionValue="stateCode"
+                     (ngModelChange)="getDistrictOnChange()"></p-dropdown>
+                <label for="state">Mill State<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="district" [autoDisplayFirst]="false" [options]="districtList"
+                [filter]="true" filterBy="districtName"
+                    optionLabel="districtName" optionValue="districtCode"
+                    [(ngModel)]="millMaster.districtCode"  (ngModelChange)="getTalukaOnChange()"></p-dropdown>
+                <label for="district">Mill District<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="talukaCode" [autoDisplayFirst]="false" [options]="talukaList"
+                [filter]="true" filterBy="talukaName"
+                optionLabel="talukaName" optionValue="talukaCode"
+                    [(ngModel)]="millMaster.talukaCode" ></p-dropdown>
+                <label for="talukaCode">Mill Taluka<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="millLocation" pInputText [(ngModel)]="millMaster.millLocation" maxlength="100">
+                <label for="millLocation">Mill Location<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+         <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="contactPerson" pInputText [(ngModel)]="millMaster.contactPerson" maxlength="100">
+                <label for="contactPerson">Contact Person Name</label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-inputNumber inputId="contactNo" [(ngModel)]="millMaster.contactNo"></p-inputNumber>
+                <label for="contactNo">Contact Person Mobile No</label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="emailId" pInputText [(ngModel)]="millMaster.emailId">
+                <label for="emailId">Email Id</label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <textarea inputId="address" rows="3" cols="30" [(ngModel)]="millMaster.address" pInputTextarea></textarea>
+                <label for="address">Address</label>
+            </span>
+        </div>
+        <br>
+        <div class="field col-12 md:col-8"></div>
+        <div class="field col-12 md:col-4">
+        <div class="field grid flex flex-wrap gap-2" style="display: flex; justify-content: flex-end">
+            <p-button label="Submit" icon="pi pi-check"  (onClick)="saveMillMaster()"></p-button>
+            <p-button label="Reset" icon="pi pi-refresh" (onClick)="resetMillMaster()" styleClass="p-button-danger"></p-button>
+          
+            </div>
+        </div>
+    </div>
+</div>

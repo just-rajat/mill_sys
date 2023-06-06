@@ -1,0 +1,32 @@
+<p-toast></p-toast>
+<div class="card">
+    <h5>User Mill Mapping</h5>
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="userId" [autoDisplayFirst]="false" [options]="userList" [filter]="true"
+                    filterBy="userName" optionLabel="userName" optionValue="userId"
+                    [(ngModel)]="userMillMapping.userId"></p-dropdown>
+                <label for="userId">User Id<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="millCode" [autoDisplayFirst]="false" [options]="millList" [filter]="true"
+                    filterBy="millName" optionLabel="millName" optionValue="millCode"
+                    [(ngModel)]="userMillMapping.millCode"></p-dropdown>
+                <label for="millCode">Mill<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <br>
+        <div class="field col-12 md:col-7"></div>
+        <div class="field col-12 md:col-12">
+            <div class="field grid flex flex-wrap gap-2" style="display: flex; justify-content: flex-end;">
+                <p-button label="Submit" icon="pi pi-check" (onClick)="saveMapping()"></p-button>
+                <p-button label="Reset" icon="pi pi-refresh" (onClick)="resetMapping()"
+                    styleClass="p-button-danger"></p-button>
+
+            </div>
+        </div>
+    </div>
+</div>

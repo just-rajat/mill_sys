@@ -1,0 +1,61 @@
+<p-toast></p-toast>
+<div class="card">
+    <h5>Commodity Conversion</h5>
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="sourceCommodityCode" [autoDisplayFirst]="false" [options]="commodityListSource"
+                    [(ngModel)]="commodityConversion.sourceCommodityCode" optionLabel="commodityCode"
+                    optionValue="commodityCode" [filter]="true" filterBy="commodityCode"
+                    [disabled]="disableOnSuccess"></p-dropdown>
+                <label for="sourceCommodityCode">Source Commodity<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="convCommodityCode" [autoDisplayFirst]="false" [options]="commodityListConvt"
+                    [(ngModel)]="commodityConversion.convCommodityCode" optionLabel="commodityCode"
+                    optionValue="commodityCode" [filter]="true" filterBy="commodityCode"
+                    [disabled]="disableOnSuccess"></p-dropdown>
+                <label for="convCommodityCode">Converted Commodity<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="convPercent" pInputText
+                    [(ngModel)]="commodityConversion.convPercent" maxlength="6" [pattern]="getDecimalPattern()"
+                    [disabled]="disableOnSuccess">
+                <label for="convPercent">Conversion Percent<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="hustPercent" pInputText [(ngModel)]="commodityConversion.hustPercent"
+                    maxlength="6" [pattern]="getDecimalPattern()" [disabled]="disableOnSuccess">
+                <label for="hustPercent">Hust Percent<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="brokenPercent" pInputText [(ngModel)]="commodityConversion.brokenPercent"
+                    maxlength="6" [pattern]="getDecimalPattern()" [disabled]="disableOnSuccess">
+                <label for="brokenPercent">Broken Percent<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-8"></div>
+        <div class="field col-12 md:col-4">
+            <div class="field grid flex flex-wrap gap-2" style="display: flex; justify-content: flex-end">
+                <p-button label="Submit" icon="pi pi-check" (onClick)="saveComConversion()"></p-button>
+                <p-button label="Reset" icon="pi pi-refresh" (onClick)="resetForm()"
+                    styleClass="p-button-danger"></p-button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,418 @@
+<p-toast></p-toast>
+<div class="card">
+    <h5>Mill Withdrawal</h5>
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="statesList"
+                    [(ngModel)]="millWithdrawal.stateCode"
+                    optionLabel="stateName"
+                    optionValue="stateCode"
+                    [filter]="true" 
+                    filterBy="stateName"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >State<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+                <!-- <small id="state-error" class="p-error">State is mandatory !!</small> -->
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="stockTypeList"
+                    [(ngModel)]="millWithdrawal.stockType"
+                    optionLabel="name"
+                    optionValue="code"
+                    (onChange)="checkStockType()"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >Stock Type<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+        <div class="field col-12 md:col-4" *ngIf="hideShowGovtFields">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="stateAgencyList"
+                    [(ngModel)]="millWithdrawal.stateAgencyCode"
+                    optionLabel="memberName"
+                    optionValue="memberId"
+                    [filter]="true" 
+                    filterBy="memberName"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >State Agency<span
+                        class="required-field"
+                        style="color: red"
+                    >
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+        <div class="field col-12 md:col-4" *ngIf="hideShowGovtFields">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="districtAgencyList"
+                    [(ngModel)]="millWithdrawal.districtAgencyCode"
+                    optionLabel="memberName"
+                    optionValue="memberId"
+                    [filter]="true" 
+                    filterBy="memberName"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >District Agency<span
+                        class="required-field"
+                        style="color: red"
+                    >
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4" *ngIf="hideShowGovtFields">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="warehouseList"
+                    [(ngModel)]="millWithdrawal.centerCode"
+                    optionLabel="memberName"
+                    optionValue="memberId"
+                    [filter]="true" 
+                    filterBy="memberName"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >Warehouse<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+        <div class="field col-12 md:col-4" *ngIf="!hideShowGovtFields">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="memberTypeList"
+                    [(ngModel)]="millWithdrawal.memberType"
+                    optionLabel="name"
+                    optionValue="code"
+                    (onChange)="getMemberList(millWithdrawal.memberType)"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >Member Type<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+        <div class="field col-12 md:col-4" *ngIf="!hideShowGovtFields">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="memberList"
+                    [(ngModel)]="millWithdrawal.memberName"
+                    optionLabel="memberName"
+                    optionValue="memberId"
+                    [filter]="true" 
+                    filterBy="memberName"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >Member Name<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="seasonIDList"
+                    [(ngModel)]="millWithdrawal.seasonId"
+                    optionLabel="seasonName"
+                    optionValue="seasonId"
+                    [filter]="true" 
+                    filterBy="seasonName"
+                    (onChange)="getFinancialYear(millWithdrawal.seasonId)"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >Season<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawal.financialYear"
+                    disabled="true"
+                />
+                <label for="inputtext"
+                    >Financial Year<span
+                        class="required-field"
+                        style="color: red"
+                    >
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="commodityList"
+                    [(ngModel)]="millWithdrawal.commodityCode"
+                    optionLabel="commodityCode"
+                    optionValue="commodityCode"
+                    [filter]="true" 
+                    filterBy="commodityCode"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >Commodity<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown
+                    inputId="dropdown"
+                    [autoDisplayFirst]="false"
+                    [options]="millList"
+                    [(ngModel)]="millWithdrawal.millCode"
+                    optionLabel="millName"
+                    optionValue="millCode"
+                    [filter]="true" 
+                    filterBy="millName"
+                    [disabled]="disableOnSuccess"
+                ></p-dropdown>
+                <label for="dropdown"
+                    >Mill<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawal.receiptNo"
+                    [disabled]="disableOnSuccess"
+                />
+                <label for="inputtext"
+                    >Receipt No.<span class="required-field" style="color: red">
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawal.totalQuantityWithdrew"
+                    disabled="true"
+                />
+                <label for="inputtext"
+                    >Total Quantity Received<span
+                        class="required-field"
+                        style="color: red"
+                    >
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawal.totalBagsWithdrew"
+                    disabled="true"
+                />
+                <label for="inputtext"
+                    >Total Bags Received<span
+                        class="required-field"
+                        style="color: red"
+                    >
+                        *</span
+                    ></label
+                >
+            </span>
+        </div>
+    </div>
+    <div
+        class="field grid flex flex-wrap gap-2"
+        style="display: flex; justify-content: flex-end"
+    >
+    <p-button
+            label="Submit"
+            icon="pi pi-check"
+            (onClick)="submitDeposit()"
+        ></p-button>
+        <p-button
+            label="Reset"
+            icon="pi pi-refresh"
+            (onClick)="reset()"
+            styleClass="p-button-danger"
+        ></p-button>
+    </div>
+</div>
+
+<div class="card">
+    <div
+        class="field grid flex flex-wrap gap-2"
+        style="display: flex; justify-content: flex-start"
+    >
+        <p-button
+            label="Add Row"
+            icon="pi pi-check"
+            (onClick)="addRow()"
+        ></p-button>
+        <p-button
+            label="Delete Selected Row"
+            icon="pi pi-times"
+            (onClick)="removeSelectedRows()"
+            styleClass="p-button-danger"
+        ></p-button>
+    </div>
+
+    <p-table [value]="withdrawalDetailsList" [(selection)]="selectedRows" dataKey="serialNo" [paginator]="true" [rows]="5" [selectionPageOnly]="true" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th style="min-width:200px">Sr No.</th>
+                <th style="min-width:200px">Arrival Date</th>
+                <th style="min-width:200px">Quantity</th>
+                <th style="min-width:200px">Bags</th>
+                <th style="min-width:200px">Transporter Name</th>
+                <th style="min-width:200px">Vehicle No.</th>
+                <th style="min-width:200px">Driver Name</th>
+                <th style="min-width:200px">Driver Mobile No.</th>
+                <th style="min-width:200px">Delivery Chalan No.</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-millWithdrawalDetails>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="millWithdrawalDetails" [disabled]="disableOnSuccess"></p-tableCheckbox>
+                </td>
+                <td><input
+                    type="number"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawalDetails.serialNo"
+                    disabled="true"
+                /></td>
+                <td><p-calendar appendTo="body" [(ngModel)]="millWithdrawalDetails.withdrawalDate" [disabled]="disableOnSuccess"></p-calendar></td>
+                <td><input
+                    type="number"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawalDetails.quantity"
+                    (blur)="calculateTotalQuantity()"
+                    [disabled]="disableOnSuccess"
+                /></td>
+                <td><input
+                    type="number"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawalDetails.noOfBags"
+                    (blur)="calculateTotalBags()"
+                    [disabled]="disableOnSuccess"
+                /></td>
+                <td><input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawalDetails.transporterName"
+                    [disabled]="disableOnSuccess"
+                    upperCase
+                /></td>
+                <td><input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawalDetails.vehicleNo"
+                    [disabled]="disableOnSuccess"
+                    upperCase
+                /></td>
+                <td><input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawalDetails.driverName"
+                    [disabled]="disableOnSuccess"
+                    upperCase
+                /></td>
+                <td><input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawalDetails.driverMobNo"
+                    [disabled]="disableOnSuccess"
+                    mobileNumber
+                /></td>
+                <td><input
+                    type="text"
+                    id="inputtext"
+                    pInputText
+                    [(ngModel)]="millWithdrawalDetails.deliveryChallanNo"
+                    [disabled]="disableOnSuccess"
+                    upperCase
+                /></td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

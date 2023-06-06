@@ -1,0 +1,107 @@
+<p-toast></p-toast>
+<div class="card">
+    <h5>Member Creation</h5>
+    <div class="grid p-fluid mt-3">
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="memberName" pInputText [(ngModel)]="memberMaster.memberName" maxlength="100">
+                <label for="memberName">Member Name<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="memberType" [autoDisplayFirst]="false" [options]="memberTypeList"
+                [filter]="true" filterBy="name"
+                optionLabel="name" optionValue="code"
+                    [(ngModel)]="memberMaster.memberType"></p-dropdown>
+                <label for="memberType">Member Type<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="state" [autoDisplayFirst]="false" [options]="stateList"
+                    [(ngModel)]="memberMaster.stateCode" 
+                    [filter]="true" filterBy="stateName"
+                    optionLabel="stateName" optionValue="stateCode"
+                     (ngModelChange)="getDistrictOnChange()"></p-dropdown>
+                <label for="state">State<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="district" [autoDisplayFirst]="false" [options]="districtList"
+                [filter]="true" filterBy="districtName"
+                    optionLabel="districtName" optionValue="districtCode"
+                    [(ngModel)]="memberMaster.districtCode"  (ngModelChange)="getTalukaOnChange()"></p-dropdown>
+                <label for="district">District<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="taluka" [autoDisplayFirst]="false" [options]="talukaList"
+                [filter]="true" filterBy="talukaName"
+                optionLabel="talukaName" optionValue="talukaCode"
+                    [(ngModel)]="memberMaster.taluka" ></p-dropdown>
+                <label for="taluka">Taluka<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="pinCode" pInputText [(ngModel)]="memberMaster.pinCode" maxlength="6">
+                <label for="pinCode">Pin code</label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="contactNo" pInputText [(ngModel)]="memberMaster.contactNo" maxlength="10">
+                <label for="contactNo">Mobile No<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="emailId" pInputText [(ngModel)]="memberMaster.emailId" maxlength="50">
+                <label for="emailId">Email Id</label>
+            </span>
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <textarea inputId="address" rows="3" cols="30" [(ngModel)]="memberMaster.address"
+                    pInputTextarea></textarea>
+                <label for="address">Address</label>
+            </span>
+        </div>
+
+
+        <div class="field col-12 md:col-6">
+
+
+
+
+
+
+        </div>
+
+
+        <div class="field col-12 md:col-7"></div>
+        <div class="field col-12 md:col-4">
+            <div class="field grid flex flex-wrap gap-2" style="display: flex; justify-content: flex-end">
+                <p-button label="Submit" icon="pi pi-check" (onClick)="saveMemberMaster()"></p-button>
+                <p-button label="Reset" icon="pi pi-refresh" (onClick)="resetMemberMaster()"
+                    styleClass="p-button-danger"></p-button>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

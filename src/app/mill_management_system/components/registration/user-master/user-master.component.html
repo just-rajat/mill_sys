@@ -1,0 +1,69 @@
+<p-toast></p-toast>
+<div class="card">
+    <h5>User Creation</h5>
+    <div class="grid p-fluid mt-2">
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="orgId" pInputText [(ngModel)]="userMaster.orgId" disabled>
+                <label for="userId">Org ID<span class="required-field" style="color: red" >
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-7"></div>
+        <div class="field col-10 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="userId" pInputText [(ngModel)]="userMaster.userId">
+                <label for="userId">User ID<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="userName" pInputText [(ngModel)]="userMaster.userName" upperCase>
+                <label for="userName">User Name<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="userPassword" pInputText [(ngModel)]="userMaster.userPassword">
+                <label for="userPassword">Password<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="userMobile" pInputText [(ngModel)]="userMaster.userMobile" pattern="[0-9]*"
+                    inputmode="numeric" maxlength="10"
+                    (keydown)="restrictNonNumeric($event)">
+                <label for="userMobile">Mobile Number<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="userEmail" pInputText [(ngModel)]="userMaster.userEmail">
+                <label for="userEmail">Email Id<span class="required-field" style="color: red">
+                        *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <textarea inputId="userAddress" rows="3" cols="20" [(ngModel)]="userMaster.userAddress"
+                    pInputTextarea></textarea>
+                <label for="userAddress">Address<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <br>
+        <div class="field col-12 md:col-7"></div>
+        <div class="field col-12 md:col-12">
+            <div class="field grid flex flex-wrap gap-2" style="display: flex; justify-content: flex-end">
+                <p-button label="Submit" icon="pi pi-check" (onClick)="saveUserDetails()"></p-button>
+                <p-button label="Reset" icon="pi pi-refresh" (onClick)="reset()"
+                    styleClass="p-button-danger"></p-button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

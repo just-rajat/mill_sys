@@ -1,0 +1,41 @@
+<p-toast></p-toast>
+<div class="card">
+    <h5>Commodity Creation</h5>
+    <div class="grid p-fluid mt-3">
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-dropdown inputId="commodityType" [autoDisplayFirst]="false" [options]="commodityTypeList"
+                [filter]="true" filterBy="name"
+                optionLabel="name" optionValue="code"
+                    [(ngModel)]="commodityMaster.commodityType"></p-dropdown>
+                <label for="commodityType">Commodity Type<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <input type="text" id="commodityGroup" pInputText [(ngModel)]="commodityMaster.commodityGroup" maxlength="10" upperCase>
+                <label for="commodityGroup">commodity Group<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <!-- <p-autoComplete inputId="seasonName" [(ngModel)]="commodityMaster.seasonName" 
+                field="name"></p-autoComplete> -->
+                <input type="text" id="commodityCode" pInputText [(ngModel)]="commodityMaster.commodityCode" maxlength="15" upperCase>
+                <label for="commodityCode">Commodity Code<span class="required-field" style="color: red"> *</span></label>
+            </span>
+        </div>
+        
+        <br>
+        <div class="field col-12 md:col-5"></div>
+        <div class="field col-12 md:col-4">
+            <div class="field grid flex flex-wrap gap-2" style="display: flex; justify-content: flex-end">
+                <p-button label="Submit" icon="pi pi-check" (onClick)="saveCommodty()"></p-button>
+                <p-button label="Reset" icon="pi pi-refresh" (onClick)="resetCommodty()"
+                    styleClass="p-button-danger"></p-button>
+
+            </div>
+        </div>
+    </div>
+</div>
